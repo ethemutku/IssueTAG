@@ -122,7 +122,7 @@ for clf, label in zip([MultNB, Knn, LR, LinSvc, CLinSvc, DT, RF, SclfBest_3, Scl
                        'Selected3',
                        'Best5',
                        'Selected5']]):
-    scores = model_selection.cross_val_score(clf, X_tfidf_train, Y_train, cv=10, scoring='accuracy')
+    scores = model_selection.cross_val_score(clf, X_tfidf_train, Y_train, cv=N_FOLDS, scoring='accuracy')
     print("Accuracy: %0.2f (+/- %0.2f) [%s]"
           % (scores.mean(), scores.std(), label))
     

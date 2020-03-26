@@ -1,4 +1,9 @@
-# Load libraries
+##############################################################
+# Appendix A Evaluating Existing Issue Assignment Approaches #
+#                                                            #
+# Analysis script to compare ml algorithms for issue record  #
+# classification.                                            #
+##############################################################
 import pandas as pd
 
 from sklearn.feature_extraction.text import TfidfVectorizer

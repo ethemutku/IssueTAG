@@ -1,7 +1,6 @@
 import re
 
 # list of the stop words to be eliminated from the issue dataset
-# Note that all the words have to be lower-cased in the dataset before filtering these words
 stop_word_list = ['ve', 'ile', 'ki', 'ama', 
              # .....
              'en', 'bir', 'bizden', 'benim']

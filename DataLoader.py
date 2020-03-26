@@ -2,17 +2,14 @@ import pandas
 import numpy
 
 # column names in the input data file 
-CNAME_PRODUCT_ID = "UYGULAMAKODU"
+CNAME_CLASS = "TAKIMKODU"
 CNAME_SUBJECT = "OZETBASLIK"
 CNAME_DESCRIPTION = "ACIKLAMA"
 CNAME_SUBJECT_DESCRIPTION = "OZETBASLIK_ACIKLAMA"
 CNAME_RECORD_TYPE="KAYITTIPI"
-CNAME_MAXIMOID="MAXIMOID"
-CNAME_RETURN_OPTION  = "IADESECENEK"
+CNAME_STATUS = "DURUM"
 CNAME_YEAR_OPENED = "OLUSTURULDUYIL"
 CNAME_MONTH_OPENED = "OLUSTURULDUAY"
-CNAME_DAY_OPENED = "OLUSTURULDUGUN"
-CNAME_OPENED = "OLUSTURULMATARIHI"
 
 # the issue assigned to a team should occur at least MIN_NUMBER_OF_DISTINCT_VALUES  times for training
 MIN_NUMBER_OF_DISTINCT_VALUES = 10
@@ -56,12 +53,6 @@ class DataLoader(object):
 
 class DataFilterer(object):
 
-    def selectRecordsHavingValue(self, dataset, columnName, columnValue):
-        """
-        return records having the columnValue at the column: columnName
-        """
-        return dataset.groupby(columnName).filter(lambda x: x.name == columnValue)
-
     def selectTrainingDatasetRecords(self, dataset):
         """
         filter issue records from the training dataset such that 
@@ -70,7 +61,7 @@ class DataFilterer(object):
         
         """
         dataset = dataset[(dataset[CNAME_RECORD_TYPE] == FILTER_ISSUE_TYPE) &
-                          (dataset[CNAME_SOLUTION] == FILTER_ISSUE_STATUS)]
+                          (dataset[CNAME_STATUS] == FILTER_ISSUE_STATUS)]
 
         # # select year and month
         frames = [selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR, FILTER_ISSUE_MONTH_1),
@@ -91,7 +82,7 @@ class DataFilterer(object):
         frames = [selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR_TEST, FILTER_ISSUE_MONTH_TEST)]
         dataset = pandas.concat(frames)
         return dataset = dataset[(dataset[CNAME_RECORD_TYPE] == FILTER_ISSUE_TYPE) &
-                                 (dataset[CNAME_SOLUTION] == FILTER_ISSUE_STATUS)]
+                                 (dataset[CNAME_STATUS] == FILTER_ISSUE_STATUS)]
     
     def selectRecordsHavingAtLeastNValuesInColumn(self, dataset, columnName):
         """

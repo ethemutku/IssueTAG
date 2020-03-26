@@ -2,7 +2,7 @@ import re
 
 # list of the stop words to be eliminated from the issue dataset
 # Note that all the words have to be lower-cased in the dataset before filtering these words
-STOP_WORDS = ['ve', 'ile', 'ki', 'ama', 
+stop_word_list = ['ve', 'ile', 'ki', 'ama', 
              # .....
              'en', 'bir', 'bizden', 'benim']
 
@@ -29,5 +29,5 @@ class TextPreProcessor(object):
         lowerText = re.sub('[\W]+', ' ', text_tr.lower())
 
         #remove stopwords
-        noStopWordsText = [word for word in lowerText.split() if word not in STOP_WORDS]
+        noStopWordsText = [word for word in lowerText.split() if word not in stop_word_list]
         return ' '.join(noStopWordsText)

@@ -41,7 +41,7 @@ print("Entire dataset length: " + str(len(entireDataset)))
 
 # filter training issue records
 trainDataset = dataFilterer.selectTrainingDatasetRecords(entireDataset)
-trainDataset = dataFilterer.selectRecordsHavingAtLeastNValuesInColumn(trainDataset, CNAME_PRODUCT_ID)
+trainDataset = dataFilterer.selectRecordsHavingAtLeastNValuesInColumn(trainDataset, CNAME_TEAMCODE)
 # text preprocessing
 trainDataset[CNAME_SUBJECT_DESCRIPTION] = trainDataset[CNAME_SUBJECT_DESCRIPTION].apply(preprocessor.filterNoise)
 
@@ -62,7 +62,7 @@ print(testDataset[CNAME_SUBJECT_DESCRIPTION].head(3))
 
 # specify the input textual data to train (X_train) and related classes (Y_train)
 X_train = trainDataset[CNAME_SUBJECT_DESCRIPTION].values
-Y_train = trainDataset[CNAME_PRODUCT_ID].values
+Y_train = trainDataset[CNAME_TEAMCODE].values
 
 # Tf-idf conversion for training dataset
 vectorizer = TfidfVectorizer(ngram_range=(1, 2))
@@ -71,7 +71,7 @@ voc = vectorizer.vocabulary_
 
 # specify the input textual data to test (X_test) and related classes (Y_test)
 X_test = testDataset[CNAME_SUBJECT_DESCRIPTION].values
-Y_test = testDataset[CNAME_PRODUCT_ID].values
+Y_test = testDataset[CNAME_TEAMCODE].values
 
 # Td-idf conversion for test dataset
 vectorizer = TfidfVectorizer(ngram_range=(1, 2), vocabulary=voc)

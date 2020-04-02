@@ -1,6 +1,4 @@
-This project includes the analysis scripts for the replication of the paper 
-
-"Automated Issue Assignment: Results and Insights from an Industrial Case".
+This project includes the analysis scripts for the replication of the paper "Automated Issue Assignment: Results and Insights from an Industrial Case".
 
 train_test.py is the script 
 

@@ -6,5 +6,5 @@ train_test.py is the script
     3. for explaining specific test issue records. (Section 5 Explaining Team Assignments) 
 
 Check these two files according to your data and language specifications: 
-    DataLoader.py includes the classes to load and filter your data. 
-    TextPreProcessor.py includes the class to preprocess textual data. 
+    1. DataLoader.py includes the classes to load and filter your data. 
+    2. TextPreProcessor.py includes the class to preprocess textual data. 

@@ -69,6 +69,9 @@ while (train_month != "EXIT"):
     train_month = str(input("Please enter the issue report month to be included in train dataset: "))
     train_month_list.append(train_month)
 
+# the issue assigned to a team should occur at least min_number_of_discinct_values times for training
+min_number_of_distinct_values = int(input("Please enter the minimum number of times a team should occur in the train dataset: "))
+    
 test_year = int(input("Please enter the issue report year to be included in test dataset: "))
 test_month = str(input("Please enter the issue report month to be included in test dataset: "))
     
@@ -84,7 +87,7 @@ print("Entire dataset length: " + str(len(entireDataset)))
 
 # filter training issue records
 trainDataset = dataFilterer.selectTrainingDatasetRecords(entireDataset, train_year, train_month_list)
-trainDataset = dataFilterer.selectRecordsHavingAtLeastNValuesInColumn(trainDataset, CNAME_TEAMCODE)
+trainDataset = dataFilterer.selectRecordsHavingAtLeastNValuesInColumn(trainDataset, CNAME_TEAMCODE, min_number_of_distinct_values)
 # text preprocessing
 trainDataset[CNAME_SUBJECT_DESCRIPTION] = trainDataset[CNAME_SUBJECT_DESCRIPTION].apply(preprocessor.filterNoise)
 

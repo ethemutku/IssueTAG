@@ -1,11 +1,15 @@
-#########################################################
-# Appendix B Time Locality and Amount of Training Data  #
-#                                                       #
-# Analysis script to evaluate the time locality and     #
-# amount of training issue reports. Note that for       #
-# different time intervals DataLoader.py file should be #
-# changed before each evaluation.                       #
-#########################################################
+##############################################################
+# Appendix B Time Locality and Amount of Training Data       #
+#                                                            #
+# Analysis script to evaluate the time locality and          #
+# amount of training issue reports. Note that for            #
+# different time intervals DataLoader.py file should be      #
+# changed before each evaluation.                            #
+#                                                            #
+# Before running, do not forget to change the DataLoader.py  #
+# and TextPreProcessor.py files according to the specifics   # 
+# of your data.                                              # 
+##############################################################
 
 import pandas as pd
 
@@ -26,10 +30,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.calibration import CalibratedClassifierCV
 from mlxtend.classifier import StackingClassifier
-
-datesChecked = str(input("Did you check the dates to filter at DataLoader.py file? (Y/N): "))
-if datesChecked != 'Y':
-    exit(0)
 
 inputfileName = "data/issues.csv"
 

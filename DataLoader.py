@@ -11,19 +11,9 @@ CNAME_STATUS = "DURUM"
 CNAME_YEAR_OPENED = "OLUSTURULDUYIL"
 CNAME_MONTH_OPENED = "OLUSTURULDUAY"
 
-# the issue assigned to a team should occur at least MIN_NUMBER_OF_DISTINCT_VALUES  times for training
-MIN_NUMBER_OF_DISTINCT_VALUES = 10
-
 # filtering specifications 
 FILTER_ISSUE_TYPE = 'Issue'
 FILTER_ISSUE_STATUS = 'Closed'
-FILTER_ISSUE_YEAR = 2017
-FILTER_ISSUE_MONTH_1 = 'JUN'
-FILTER_ISSUE_MONTH_2 = 'JUL'
-# ...
-FILTER_ISSUE_MONTH_6 = 'NOV'
-FILTER_ISSUE_YEAR_TEST = 2017
-FILTER_ISSUE_MONTH_TEST = 'DEC'
 
 def selectRecordsOpenedAtYearMonth(dataset, year, month):
     """
@@ -53,7 +43,7 @@ class DataLoader(object):
 
 class DataFilterer(object):
 
-    def selectTrainingDatasetRecords(self, dataset):
+    def selectTrainingDatasetRecords(self, dataset, train_year, train_month_list):
         """
         filter issue records from the training dataset such that 
          * unresolved are eliminated and 
@@ -64,14 +54,14 @@ class DataFilterer(object):
                           (dataset[CNAME_STATUS] == FILTER_ISSUE_STATUS)]
 
         # # select year and month
-        frames = [selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR, FILTER_ISSUE_MONTH_1),
-                  selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR, FILTER_ISSUE_MONTH_2),
-                  # .....
-                  selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR, FILTER_ISSUE_MONTH_6)]
+        frames = []
+        for train_month in train_month_list:
+            frames.append(selectRecordsOpenedAtYearMonth(dataset, train_year, train_month))
+
         dataset = pandas.concat(frames)
         return dataset
 
-    def selectTestDatasetRecords(self, dataset):
+    def selectTestDatasetRecords(self, dataset, test_year, test_month):
         """
         filter issue records from the test dataset such that 
          * unresolved are eliminated and 
@@ -79,15 +69,15 @@ class DataFilterer(object):
          
         """
         # select year and month
-        frames = [selectRecordsOpenedAtYearMonth(dataset, FILTER_ISSUE_YEAR_TEST, FILTER_ISSUE_MONTH_TEST)]
+        frames = [selectRecordsOpenedAtYearMonth(dataset, test_year, test_month)]
         dataset = pandas.concat(frames)
         return dataset = dataset[(dataset[CNAME_RECORD_TYPE] == FILTER_ISSUE_TYPE) &
                                  (dataset[CNAME_STATUS] == FILTER_ISSUE_STATUS)]
     
-    def selectRecordsHavingAtLeastNValuesInColumn(self, dataset, columnName):
+    def selectRecordsHavingAtLeastNValuesInColumn(self, dataset, columnName, min_number_of_distinct_values):
         """
         returns records that have the same value at columnName at least N times 
 
         """
 
-        return dataset.groupby(columnName).filter(lambda x: len(x) >= MIN_NUMBER_OF_DISTINCT_VALUES)
+        return dataset.groupby(columnName).filter(lambda x: len(x) >= min_number_of_distinct_values)

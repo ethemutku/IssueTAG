@@ -3,6 +3,10 @@
 #                                                            #
 # Analysis script to compare ml algorithms for issue record  #
 # classification.                                            #
+#                                                            #
+# Before running, do not forget to change the DataLoader.py  #
+# and TextPreProcessor.py files according to the specifics   # 
+# of your data.                                              # 
 ##############################################################
 import pandas as pd
 
@@ -24,10 +28,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.calibration import CalibratedClassifierCV
 from mlxtend.classifier import StackingClassifier
-
-datesChecked = str(input("Did you check the dates to filter at DataLoader.py file? (Y/N): "))
-if datesChecked != 'Y':
-    exit(0)
 
 inputfileName = "data/issues.csv"
 
@@ -127,12 +127,14 @@ for clf, label in zip([MultNB, Knn, LR, LinSvc, CLinSvc, DT, RF, SclfBest_3, Scl
                        'Selected3',
                        'Best5',
                        'Selected5']]):
+    
+    print(label + ":Training starts:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+    start_time = time()
+
     scores = model_selection.cross_val_score(clf, X_tfidf_train, Y_train, cv=N_FOLDS, scoring='accuracy')
     print("Accuracy: %0.2f (+/- %0.2f) [%s]"
           % (scores.mean(), scores.std(), label))
     
-    print(label + ":Training starts:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-    start_time = time()
     clf.fit(X_tfidf_train, Y_train)
     end_time = time()
     print(label + ":Training ends:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))

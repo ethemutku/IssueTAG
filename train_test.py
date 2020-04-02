@@ -63,6 +63,15 @@ inputfileName = "data/issues.csv"
 # N-fold cross validation
 N_FOLDS = 10
 
+train_year = int(input("Please enter the issue report year to be included in train dataset: "))
+train_month_list = []
+while (train_month != "EXIT"):
+    train_month = str(input("Please enter the issue report month to be included in train dataset: "))
+    train_month_list.append(train_month)
+
+test_year = int(input("Please enter the issue report year to be included in test dataset: "))
+test_month = str(input("Please enter the issue report month to be included in test dataset: "))
+    
 print("Program starts:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 dataLoader = DataLoader()
@@ -74,7 +83,7 @@ entireDataset = dataLoader.load(inputfileName)
 print("Entire dataset length: " + str(len(entireDataset)))
 
 # filter training issue records
-trainDataset = dataFilterer.selectTrainingDatasetRecords(entireDataset)
+trainDataset = dataFilterer.selectTrainingDatasetRecords(entireDataset, train_year, train_month_list)
 trainDataset = dataFilterer.selectRecordsHavingAtLeastNValuesInColumn(trainDataset, CNAME_TEAMCODE)
 # text preprocessing
 trainDataset[CNAME_SUBJECT_DESCRIPTION] = trainDataset[CNAME_SUBJECT_DESCRIPTION].apply(preprocessor.filterNoise)
@@ -85,7 +94,7 @@ print("Train dataset loaded:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 print(trainDataset[CNAME_SUBJECT_DESCRIPTION].head(3))
 
 # filter test issue records
-testDataset = dataFilterer.selectTestDatasetRecords(entireDataset)
+testDataset = dataFilterer.selectTestDatasetRecords(entireDataset, test_year, test_month)
 #text preprocessing
 testDataset[CNAME_SUBJECT_DESCRIPTION] = testDataset[CNAME_SUBJECT_DESCRIPTION].apply(preprocessor.filterNoise)
 

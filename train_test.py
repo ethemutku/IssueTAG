@@ -168,7 +168,7 @@ if option == "1":
                            'Best3',
                            'Selected3',
                            'Best5',
-                           'Selected5']]):
+                           'Selected5']):
         print(label + ":Training starts:" + strftime("%Y-%m-%d %H:%M:%S", gmtime()))
         start_time = time()
 
@@ -211,9 +211,9 @@ elif option == "2":
     print(confusion_matrix(Y_test, predictions))
     print(classification_report(Y_test, predictions))
 elif option == "3":
-    for i in range(0,len(testDataset))
+    for i in range(0,len(testDataset)):
         # Explain the instances
-        c = make_pipeline(vectorizer, cSvm)
+        c = make_pipeline(vectorizer, CLinSvc)
         class_names = c.classes_
         explainer = LimeTextExplainer(class_names=class_names)
         top_n_labels = 3 # Top n recommendations to explain

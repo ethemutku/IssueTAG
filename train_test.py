@@ -11,10 +11,7 @@
 # change the DataLoader.py and TextPreProcessor.py files according to    # 
 # the specifics of your data and the run.                                #  
 ##########################################################################
-import pandas as pd
-
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.externals import joblib
 from time import gmtime, strftime, time
 from DataLoader import *
 from TextPreProcessor import TextPreProcessor

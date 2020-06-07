@@ -6,7 +6,7 @@ Due to security reasons, we are able to publish (in full, or in partial) neither
 
 ## IssueTAG
 
-IssueTAG is a software issue report assignment tool, which has been fully operational in an industrial setting since Jan 12, 2018, making automated assignments for all the issue reports submitted. Our goal in this work is neither to propose another approach for automated issue assignment nor to evaluate the existing approaches. It is rather to identify an existing approach that can produce similar assignment accuracies with manual assignment and that can be developed and deployed with as little risk as possible.
+IssueTAG is a software issue report assignment tool, which has been fully operational in an industrial setting since Jan 12, 2018, making automated assignments for all the issue reports submitted. Our goal in this work is to identify an existing approach that can produce similar assignment accuracies with manual assignment and that can be developed and deployed with as little risk as possible.
 
 ### Issue Assignment Approach
 

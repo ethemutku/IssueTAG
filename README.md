@@ -12,9 +12,7 @@ IssueTAG is a software issue report assignment tool, which has been fully operat
 
 Given an issue report, we first combine the 'description' and 'summary' attributes of the issue report, tokenize the combined text into terms, and remove the non-letter characters as well as the stop words. We then represent an issue report as a multi-dimensional vector using the well-known 'tf-idf' method. Finally, the problem of assignment is cast to a classification problem where the development team, to which the issue report should be assigned, becomes the class to be predicted.
 
-```
 [compare_algorithms.ipynb](https://github.com/ethemutku/IssueTAG/blob/master/compare_algoritms.ipynb) is the script for comparing different machine learning algorithms for issue report classification.
-```
 
 ### Time Locality of Training Data
 
@@ -22,9 +20,7 @@ IssueTAG is an online system, which is expected to have a long lifespan. Therefo
 
 To this end, we used the 'sliding window' and 'cumulative window' approaches introduced in ([Jonsson et al. 2016](https://www.researchgate.net/publication/281740475_Automated_Bug_Assignment_Ensemble-based_Machine_Learning_in_Large_Scale_Industrial_Contexts)).
 
-```
 [evaluate_time_and_amount.ipynb](https://github.com/ethemutku/IssueTAG/blob/master/evaluate_time_and_amount.ipynb) is for the evaluation of the effect of varying time interval and amount of training data.
-```
 
 ## Explaining Team Assignments
 
@@ -32,19 +28,15 @@ One interesting observation we made after IssueTAG had been deployed was that, o
 
 We use LIME (Local Interpretable Model-Agnostic Explanations) to automatically produce explanations for the issue assignments made by IssueTAG. LIME is a model-agnostic algorithm for explaining the predictions of a classification or regression model ([Riberio et al. 2016](https://github.com/marcotcr/lime)).
 
-```
 [explain_issues.ipynb](https://github.com/ethemutku/IssueTAG/blob/master/explain_issues.ipynb) is the script to explain specific test issue records.
-```
 
 ## Monitoring Deterioration
 
 A mechanism to monitor the performance of IssueTAG is important because it not only increases the confidence of the stakeholders in the system, but also helps determine when the underlying classification model needs to be recalibrated by, for example, retraining the model.
 
-To this end, we use an online change point detection approach, called Pruned Exact Linear Time (PELT) (Killick et al. 2012). In a nutshell, PELT is a statistical analysis technique to identify when the underlying model of a signal changes (Truong et al. 2018). In our context, we feed PELT with a sequence of daily assignment accuracies as the signal. The output is a set of points in time (if any) where mean shifts. PELT, being an approach based on dynamic programming, detects both the number of change points and their locations with a linear computational cost under certain conditions (Killick et al. 2012). 
+To this end, we use an online change point detection approach, called Pruned Exact Linear Time (PELT) (Killick et al. 2012). In a nutshell, PELT is a statistical analysis technique to identify when the underlying model of a signal changes ([Truong et al. 2018](https://github.com/deepcharles/ruptures)). In our context, we feed PELT with a sequence of daily assignment accuracies as the signal. The output is a set of points in time (if any) where mean shifts. PELT, being an approach based on dynamic programming, detects both the number of change points and their locations with a linear computational cost under certain conditions (Killick et al. 2012). 
 
-```
 [monitor_performance.ipynb](https://github.com/ethemutku/IssueTAG/blob/master/monitor_performance.ipynb) is the script to monitor the performance of the issue assignment system.
-```
 
 ## Lessons Learnt
 

@@ -46,6 +46,16 @@ To this end, we use an online change point detection approach, called Pruned Exa
 monitor_performance.ipynb is the script to monitor the performance of the issue assignment system.
 ```
 
+## Lessons Learnt
+
+It is not just about deploying a system for automated issue assignment, but also about designing/changing the assignment process around the system. 
+
+The accuracy of the assignments does not have to be higher than that of manual assignments in order for the system to be useful. 
+
+Deploying such a system requires the development of additional functionalities, such as creating human-readable explanations for the assignments and detecting deteriorations in assignment accuracies, for both of which we have developed and empirically evaluated different approaches. 
+
+Stakeholders do not necessarily resist change and gradual transition helps build confidence.
+
 ## References
 
 [1] Jonsson, L., Borg, M., Broman, D., Sandahl, K., Eldh, S., & Runeson, P. (2016). Automated bug assignment: Ensemble-based machine learning in large scale industrial contexts. Empirical Software Engineering, 21(4), 1533-1578.

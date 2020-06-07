@@ -1,19 +1,19 @@
 # Automated Issue Assignment: Results and Insights from an Industrial Case
 
-This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches and our experience gained by deploying the resulting system, IsueTAG.
+This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches and our experience gained by deploying the resulting system, IssueTAG. (Note that the related paper is currently under review.)
+
+Due to security reasons, we are able to publish (in full, or in partial) neither the issue reports used in these studies nor the source code of IssueTAG.  However, some scripts, which are similar to the ones we used in order to carry out the experiments for the issue assignment approach and time locality of training data, as well as some code excerpts demonstrating the basic functionalities used in explaining the assignments and monitoring deterioration, can be found here. 
 
 ## IssueTAG
 
-IssueTAG is a software issue report assignment application, which has been fully operational since Jan 12, 2018, making automated assignments for all the issue reports submitted. Our goal in this work is neither to propose another approach for automated issue assignment nor to evaluate the existing approaches. It is rather to identify an existing approach that can produce similar or better assignment accuracies with the manual assignment and that can be developed and deployed with as little risk as possible.
+IssueTAG is a software issue report assignment tool, which has been fully operational in an industrial setting since Jan 12, 2018, making automated assignments for all the issue reports submitted. Our goal in this work is neither to propose another approach for automated issue assignment nor to evaluate the existing approaches. It is rather to identify an existing approach that can produce similar assignment accuracies with manual assignment and that can be developed and deployed with as little risk as possible.
 
 ### Issue Assignment Approach
 
-Given an issue report, we first combine the 'description' and 'summary' parts of the issue report, tokenize the combined text into terms, and remove the non-letter characters as well as the stop words. We then represent an issue report as a multi-dimensional vector using the well-known tf-idf method. Finally, the problem of assignment is cast to a classification problem where the development team, to which the issue report should be assigned, becomes the class to be predicted.
-
-To determine the classifier to be used in IssueTAG, we picked a number of classifiers, each of which had been shown to be effective for automated issue assignment. These classifiers were, namely, multinomial naive bayesian \citep{manning2010introduction}, decision tree \citep{breiman2017classification}, k-nearest neighbor \citep{manning2010introduction}, logistic regression \citep{bishop2006pattern}, random forest \citep{breiman2001random}, and linear support vector classifiers (SVCs) \citep{joachims1998text}. We also combined these classifiers in different ways by using stacked generalization -- an ensemble technique to combine multiple individual classifiers \citep{wolpert1992stacked}. All told, we obtained a total of $11$ different classifiers. We then evaluated the performance of these classifiers by using historical issue reports (Appendix~\ref{existing}).}
+Given an issue report, we first combine the 'description' and 'summary' attributes of the issue report, tokenize the combined text into terms, and remove the non-letter characters as well as the stop words. We then represent an issue report as a multi-dimensional vector using the well-known 'tf-idf' method. Finally, the problem of assignment is cast to a classification problem where the development team, to which the issue report should be assigned, becomes the class to be predicted.
 
 ```
-compare_algorithms.ipynb is the script for comparing different machine learning algorithms for issue report classification (Appendix A: Evaluating Existing Issue Assignment Approaches).
+compare_algorithms.ipynb is the script for comparing different machine learning algorithms for issue report classification.
 ```
 
 ### Time Locality of Training Data
@@ -23,7 +23,7 @@ IssueTAG is an online system, which is expected to have a long lifespan. Therefo
 To this end, we used the 'sliding window' and 'cumulative window' approaches introduced in (Jonsson et al. 2016).
 
 ```
-evaluate_time_and_amount.ipynb is for the evaluation of the effect of varying time interval and amount of training data (Appendix B: Time Locality and Amount of Training Data).
+evaluate_time_and_amount.ipynb is for the evaluation of the effect of varying time interval and amount of training data.
 ```
 
 ## Explaining Team Assignments
@@ -38,9 +38,9 @@ explain_issues.ipynb is the script to explain specific test issue records.
 
 ## Monitoring Deterioration
 
-A mechanism to monitor the performance of IssueTAG is important because such a mechanism not only increases the confidence of the stakeholders in the system, but also helps determine when the underlying classification model needs to be recalibrated by, for example, retraining the model.
+A mechanism to monitor the performance of IssueTAG is important because it not only increases the confidence of the stakeholders in the system, but also helps determine when the underlying classification model needs to be recalibrated by, for example, retraining the model.
 
-To this end, we use an online change point detection approach, called  Pruned Exact Linear Time (PELT) (Killick et al. 2012). In a nutshell, PELT is a statistical analysis technique to identify when the underlying model of a signal changes (Truong et al. 2018). In our context, we feed PELT with a sequence of daily assignment accuracies as the signal. The output is a set of points in time (if any) where mean shifts. PELT, being an approach based on dynamic programming, detects both the number of change points and their locations with a linear computational cost under certain conditions (Killick et al. 2012). 
+To this end, we use an online change point detection approach, called Pruned Exact Linear Time (PELT) (Killick et al. 2012). In a nutshell, PELT is a statistical analysis technique to identify when the underlying model of a signal changes (Truong et al. 2018). In our context, we feed PELT with a sequence of daily assignment accuracies as the signal. The output is a set of points in time (if any) where mean shifts. PELT, being an approach based on dynamic programming, detects both the number of change points and their locations with a linear computational cost under certain conditions (Killick et al. 2012). 
 
 ```
 monitor_performance.ipynb is the script to monitor the performance of the issue assignment system.

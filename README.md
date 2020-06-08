@@ -1,6 +1,6 @@
 # Automated Issue Assignment: Results and Insights from an Industrial Case
 
-This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches in an industrial setting and our experience gained by deploying the resulting system, IssueTAG. (Note that the related paper is currently under review.)
+This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches in an industrial setting and our experience gained by deploying the resulting system, IssueTAG. Note that our article is currently under review for the Empirical Software Engineering Journal (Aktas and Yilmaz, 2020).
 
 Due to security reasons, we are able to publish (in full, or in partial) neither the issue reports used in these studies nor the source code of IssueTAG.  However, some scripts, which are similar to the ones we used in order to carry out the experiments for the issue assignment approach and time locality of training data, as well as some code excerpts demonstrating the basic functionalities used in explaining the assignments and monitoring deterioration, can be found here. 
 
@@ -50,11 +50,13 @@ Stakeholders do not necessarily resist change and gradual transition helps build
 
 ## References
 
-[1] Jonsson, L., Borg, M., Broman, D., Sandahl, K., Eldh, S., & Runeson, P. (2016). Automated bug assignment: Ensemble-based machine learning in large scale industrial contexts. Empirical Software Engineering, 21(4), 1533-1578.
+[1] Aktas, E.U. & Yilmaz, C. (2020). Automated Issue Assignment: Results and Insights from an Industrial Case. under review, Empirical Software Engineering Journal (EMSE).
 
-[2] Ribeiro, M. T., Singh, S., & Guestrin, C. (2016, August). "Why should i trust you?" Explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining (pp. 1135-1144).
+[2] Jonsson, L., Borg, M., Broman, D., Sandahl, K., Eldh, S., & Runeson, P. (2016). Automated bug assignment: Ensemble-based machine learning in large scale industrial contexts. Empirical Software Engineering, 21(4), 1533-1578.
 
-[3] Killick, R., Fearnhead, P., & Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association, 107(500), 1590-1598.
+[3] Ribeiro, M. T., Singh, S., & Guestrin, C. (2016, August). "Why should i trust you?" Explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining (pp. 1135-1144).
 
-[4] Truong, C., Oudre, L., & Vayatis, N. (2018). ruptures: change point detection in Python. arXiv preprint arXiv:1801.00826.
+[4] Killick, R., Fearnhead, P., & Eckley, I. A. (2012). Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association, 107(500), 1590-1598.
+
+[5] Truong, C., Oudre, L., & Vayatis, N. (2018). ruptures: change point detection in Python. arXiv preprint arXiv:1801.00826.
 

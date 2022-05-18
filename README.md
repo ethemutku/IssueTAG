@@ -1,6 +1,6 @@
 # Automated Issue Assignment: Results and Insights from an Industrial Case
 
-This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches in an industrial setting and our experience gained by deploying the resulting system, IssueTAG. **(Aktas and Yilmaz, 2020)**. Online access: https://rdcu.be/b5xQZ
+This project is about how we automated the process of assigning issue reports to development teams by using data mining approaches in an industrial setting and our experience gained by deploying the resulting system, IssueTAG. **(Aktas and Yilmaz, 2020)**. [Paper](https://link.springer.com/article/10.1007/s10664-020-09846-3) [Online access:](https://rdcu.be/b5xQZ) 
 
 Due to security reasons, we are able to publish (in full, or in partial) neither the issue reports used in these studies nor the source code of IssueTAG. However, some scripts, which are similar to the ones we used in order to carry out the experiments for the issue assignment approach and time locality of training data, as well as some code excerpts demonstrating the basic functionalities used in explaining the assignments and monitoring deterioration, can be found here. 
 
